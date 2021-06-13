@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Hotel_IPT.Models.Fotos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fotografia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quarto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <img src="~/fotos/@Html.DisplayFor(modelItem => item.Fotografia)"
+                     width="50"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quarto.IdQuarto)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdFoto">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdFoto">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdFoto">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
