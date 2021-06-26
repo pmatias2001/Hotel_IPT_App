@@ -1,15 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hotel_IPT.Models
 {
-    public class Utilizadores
+    public class Utilizadores : IdentityUser
     {
-
         public Utilizadores()
         {
             // inicializar a lista de Reservas de cada um dos users
@@ -20,7 +17,7 @@ namespace Hotel_IPT.Models
         /// Identificador de cada user
         /// </summary>
         [Key]
-        public int IdUser { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Nome do user
@@ -55,11 +52,19 @@ namespace Hotel_IPT.Models
         /// </summary>
         public string NIF { get; set; }
 
+        //************************************************************************************
+        /// <summary>
+        /// Funciona como Chave Forasteira no relacionamento entre os Criadores
+        /// e a tabela de autenticação
+        /// </summary>
+        public string UserName { get; set; }
+
         // associar os users às suas reservas
         /// <summary>
         /// Lista das Reservas do user
         /// </summary>
         public ICollection<Reservas> ListaReservas { get; set; }
+
 
     }
 }
