@@ -4,14 +4,16 @@ using Hotel_IPT_App.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Hotel_IPT_App.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210626082905_login")]
+    partial class login
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,8 +168,8 @@ namespace Hotel_IPT_App.Data.Migrations
                     b.Property<int>("Piso")
                         .HasColumnType("int");
 
-                    b.Property<double>("Preco")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("IdQuarto");
 
@@ -180,7 +182,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "Retriever do Labrador",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         },
                         new
                         {
@@ -188,7 +190,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "Serra da Estrela",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         },
                         new
                         {
@@ -196,7 +198,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "Pastor Alemão",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         },
                         new
                         {
@@ -204,7 +206,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "Dogue Alemão",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         },
                         new
                         {
@@ -212,7 +214,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "S. Bernardo",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         },
                         new
                         {
@@ -220,7 +222,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "Rafeiro do Alentejo",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         },
                         new
                         {
@@ -228,7 +230,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "Golden Retriever",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         },
                         new
                         {
@@ -236,7 +238,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "Border Collie",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         });
                 });
 
@@ -378,7 +380,6 @@ namespace Hotel_IPT_App.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Contacto")
-                        .IsRequired()
                         .HasMaxLength(14)
                         .HasColumnType("nvarchar(14)");
 
@@ -386,16 +387,13 @@ namespace Hotel_IPT_App.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("NIF")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")

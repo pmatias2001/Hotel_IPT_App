@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Hotel_IPT.Models.Utilizadores>
+
+@{
+    ViewData["Title"] = "ListaUtilizadoresPorAutorizar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-action="ListaUtilizadoresPorAutorizar" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataNasc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contacto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NIF)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" value="@item.UserName" name="utilizadores" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataNasc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contacto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NIF)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="form-group">
+        <input type="submit" value="Atualizar os dados dos Criadores" class="btn btn-primary" />
+    </div>
+</form>

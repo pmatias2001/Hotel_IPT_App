@@ -4,14 +4,16 @@ using Hotel_IPT_App.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Hotel_IPT_App.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210625154226_username")]
+    partial class username
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,8 +168,8 @@ namespace Hotel_IPT_App.Data.Migrations
                     b.Property<int>("Piso")
                         .HasColumnType("int");
 
-                    b.Property<double>("Preco")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("IdQuarto");
 
@@ -180,7 +182,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "Retriever do Labrador",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         },
                         new
                         {
@@ -188,7 +190,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "Serra da Estrela",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         },
                         new
                         {
@@ -196,7 +198,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "Pastor Alemão",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         },
                         new
                         {
@@ -204,7 +206,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "Dogue Alemão",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         },
                         new
                         {
@@ -212,7 +214,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "S. Bernardo",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         },
                         new
                         {
@@ -220,7 +222,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "Rafeiro do Alentejo",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         },
                         new
                         {
@@ -228,7 +230,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "Golden Retriever",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         },
                         new
                         {
@@ -236,7 +238,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Descricao = "Border Collie",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 20.300000000000001
+                            Preco = 20.3m
                         });
                 });
 
@@ -372,13 +374,18 @@ namespace Hotel_IPT_App.Data.Migrations
 
             modelBuilder.Entity("Hotel_IPT.Models.Utilizadores", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdUser")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Contacto")
-                        .IsRequired()
                         .HasMaxLength(14)
                         .HasColumnType("nvarchar(14)");
 
@@ -386,106 +393,208 @@ namespace Hotel_IPT_App.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<string>("NIF")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdUser");
 
                     b.ToTable("Utilizadores");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            IdUser = 1,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "fb45e4e6-0919-4367-a449-7fea4125d048",
                             Contacto = "967197885",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "Marisa.Freitas@ipt.pt",
+                            Email = "Marisa.Freitas@iol.pt",
+                            EmailConfirmed = false,
+                            Id = "3457bb89-cc89-4987-9098-95bb0cbbae0a",
+                            LockoutEnabled = false,
                             NIF = "346871334",
-                            Nome = "Marisa Vieira"
+                            Nome = "Marisa Vieira",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "eb8c0a35-2f8b-4685-b378-7c55356b76c3",
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 2,
+                            IdUser = 2,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0d98aab3-3481-4af8-b0f3-4423315a8616",
                             Contacto = "963737476",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "Fátima.Machado@ipt.pt",
+                            Email = "Fátima.Machado@gmail.com",
+                            EmailConfirmed = false,
+                            Id = "ed121f2c-dde0-486b-8dec-fb2fcb88fabe",
+                            LockoutEnabled = false,
                             NIF = "346871334",
-                            Nome = "Fátima Ribeiro"
+                            Nome = "Fátima Ribeiro",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "2afb0840-4a32-408c-9fbb-16f8543087f7",
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 4,
+                            IdUser = 4,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a427e9ce-ffd2-4337-8e53-5012aa3a3c7a",
                             Contacto = "967517256",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "Paula.Lopes@ipt.pt",
+                            Email = "Paula.Lopes@iol.pt",
+                            EmailConfirmed = false,
+                            Id = "48ac6f00-dfab-4c65-97e7-4f57bbdb9fd3",
+                            LockoutEnabled = false,
                             NIF = "346871334",
-                            Nome = "Paula Silva"
+                            Nome = "Paula Silva",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "51c94dd7-e6cf-4224-b3e8-cb4712c1515f",
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 5,
+                            IdUser = 5,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e11aa619-3a1f-4a80-b48f-9804ad56e90b",
                             Contacto = "967212144",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "Mariline.Martins@ipt.pt",
+                            Email = "Mariline.Martins@sapo.pt",
+                            EmailConfirmed = false,
+                            Id = "b2427c6b-c376-4949-82f0-a3fcad7a4a97",
+                            LockoutEnabled = false,
                             NIF = "346871334",
-                            Nome = "Mariline Marques"
+                            Nome = "Mariline Marques",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "dea6e9de-ae9c-4762-9790-52390e7e014d",
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 6,
+                            IdUser = 6,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f471d35c-9ca3-4834-b478-78e35134a0d4",
                             Contacto = "962125638",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "Marcos.Rocha@ipt.pt",
+                            Email = "Marcos.Rocha@sapo.pt",
+                            EmailConfirmed = false,
+                            Id = "4e60ba24-c269-4a10-9c2c-abdef40b2479",
+                            LockoutEnabled = false,
                             NIF = "346871334",
-                            Nome = "Marcos Rocha"
+                            Nome = "Marcos Rocha",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "37f3f3c6-040c-47e4-8627-bec3121d7031",
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 7,
+                            IdUser = 7,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "93bf7630-ebf1-4ab8-a531-c6b74d0edc13",
                             Contacto = "961493756",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "Alexandre.Dias@ipt.pt",
+                            Email = "Alexandre.Dias@hotmail.com",
+                            EmailConfirmed = false,
+                            Id = "ae9e0552-32cc-4749-806d-9fff9ce52f40",
+                            LockoutEnabled = false,
                             NIF = "346871334",
-                            Nome = "Alexandre Vieira"
+                            Nome = "Alexandre Vieira",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "56c02c89-ec50-44ba-ae58-1eb9fa1d559c",
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 8,
+                            IdUser = 8,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ecb7b0ec-a3de-4ab0-9f20-deb0a50ebce2",
                             Contacto = "961937768",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "Paula.Vieira@ipt.pt",
+                            Email = "Paula.Vieira@clix.pt",
+                            EmailConfirmed = false,
+                            Id = "badce9ae-a93a-44b7-8b0d-0b6512288fd2",
+                            LockoutEnabled = false,
                             NIF = "346871334",
-                            Nome = "Paula Soares"
+                            Nome = "Paula Soares",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "d2abc043-5019-405b-94c0-11e18450afc1",
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 9,
+                            IdUser = 9,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "baee3e3a-8c21-4372-9383-9d01424463fd",
                             Contacto = "964106478",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "Mariline.Ribeiro@ipt.pt",
+                            Email = "Mariline.Ribeiro@iol.pt",
+                            EmailConfirmed = false,
+                            Id = "728a6931-f8d3-47bf-ae95-f6cd95df7fea",
+                            LockoutEnabled = false,
                             NIF = "346871334",
-                            Nome = "Mariline Santos"
+                            Nome = "Mariline Santos",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "48d5365e-2025-469d-99d3-484ffb7ca09f",
+                            TwoFactorEnabled = false
                         },
                         new
                         {
-                            Id = 10,
+                            IdUser = 10,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2d6cea47-09d6-43d8-b5b8-9d410a3e4af3",
                             Contacto = "964685937",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "Roberto.Vieira@ipt.pt",
+                            Email = "Roberto.Vieira@sapo.pt",
+                            EmailConfirmed = false,
+                            Id = "54ed9e45-1e0e-4748-9098-dec674300ceb",
+                            LockoutEnabled = false,
                             NIF = "346871334",
-                            Nome = "Roberto Pinto"
+                            Nome = "Roberto Pinto",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "42d74b4c-b3b1-486a-9d84-007566070aa7",
+                            TwoFactorEnabled = false
                         });
                 });
 

@@ -45,8 +45,8 @@ namespace Hotel_IPT.Models
         /// Preço associado ao quarto
         /// </summary>
         [Display(Name = "Preço")]
-        [Column(TypeName = "decimal(18,2)")]
-        public Decimal Preco { get; set; }
+        //[Column(TypeName = decimal)]
+        public double Preco { get; set; }
 
         /// <summary>
         /// Lista das Fotografias do quarto

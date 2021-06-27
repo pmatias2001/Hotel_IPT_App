@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hotel_IPT.Models;
 using Hotel_IPT_App.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hotel_IPT_App.Controllers
 {
+    [Authorize]
     public class QuartosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,12 +22,14 @@ namespace Hotel_IPT_App.Controllers
         }
 
         // GET: Quartos
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Quartos.ToListAsync());
         }
 
         // GET: Quartos/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

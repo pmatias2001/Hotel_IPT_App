@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hotel_IPT.Models;
 using Hotel_IPT_App.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hotel_IPT_App.Controllers
 {
+    [Authorize]
     public class ReservasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,6 +22,7 @@ namespace Hotel_IPT_App.Controllers
         }
 
         // GET: Reservas
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Reservas.Include(r => r.Cliente);
@@ -27,6 +30,7 @@ namespace Hotel_IPT_App.Controllers
         }
 
         // GET: Reservas/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

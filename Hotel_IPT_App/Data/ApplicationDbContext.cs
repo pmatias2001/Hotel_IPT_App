@@ -4,10 +4,23 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Hotel_IPT.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Hotel_IPT_App.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    /// <summary>
+    /// classe para recolher os dados particulares dos Utilizadores
+    /// </summary>
+    public class ApplicationUser : IdentityUser
+    {
+
+        /// <summary>
+        /// recolhe a data de registo de um utilizador
+        /// </summary>
+        public DateTime DataRegisto { get; set; }
+
+    }
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -20,26 +33,26 @@ namespace Hotel_IPT_App.Data
             // insert DB seed
 
             modelBuilder.Entity<Quartos>().HasData(
-               new Quartos { IdQuarto = 1, Piso = 3, Descricao = "Retriever do Labrador", Lotacao = 3, Preco = new Decimal(20.30) },
-               new Quartos { IdQuarto = 2, Piso = 3, Descricao = "Serra da Estrela", Lotacao = 3, Preco = new Decimal(20.30) },
-               new Quartos { IdQuarto = 3, Piso = 3, Descricao = "Pastor Alemão", Lotacao = 3, Preco = new Decimal(20.30) },
-               new Quartos { IdQuarto = 4, Piso = 3, Descricao = "Dogue Alemão", Lotacao = 3, Preco = new Decimal(20.30) },
-               new Quartos { IdQuarto = 5, Piso = 3, Descricao = "S. Bernardo", Lotacao = 3, Preco = new Decimal(20.30) },
-               new Quartos { IdQuarto = 6, Piso = 3, Descricao = "Rafeiro do Alentejo", Lotacao = 3, Preco = new Decimal(20.30) },
-               new Quartos { IdQuarto = 7, Piso = 3, Descricao = "Golden Retriever", Lotacao = 3, Preco = new Decimal(20.30) },
-               new Quartos { IdQuarto = 8, Piso = 3, Descricao = "Border Collie", Lotacao = 3, Preco = new Decimal(20.30) }
+               new Quartos { IdQuarto = 1, Piso = 3, Descricao = "Retriever do Labrador", Lotacao = 3, Preco = 20.30 },
+               new Quartos { IdQuarto = 2, Piso = 3, Descricao = "Serra da Estrela", Lotacao = 3, Preco = 20.30 },
+               new Quartos { IdQuarto = 3, Piso = 3, Descricao = "Pastor Alemão", Lotacao = 3, Preco = 20.30 },
+               new Quartos { IdQuarto = 4, Piso = 3, Descricao = "Dogue Alemão", Lotacao = 3, Preco = 20.30 },
+               new Quartos { IdQuarto = 5, Piso = 3, Descricao = "S. Bernardo", Lotacao = 3, Preco = 20.30 },
+               new Quartos { IdQuarto = 6, Piso = 3, Descricao = "Rafeiro do Alentejo", Lotacao = 3, Preco = 20.30 },
+               new Quartos { IdQuarto = 7, Piso = 3, Descricao = "Golden Retriever", Lotacao = 3, Preco = 20.30 },
+               new Quartos { IdQuarto = 8, Piso = 3, Descricao = "Border Collie", Lotacao = 3, Preco = 20.30 }
             );
 
             modelBuilder.Entity<Utilizadores>().HasData(
-               new Utilizadores { IdUser = 1, Nome = "Marisa Vieira", DataNasc = new DateTime(2019, 4, 16), Email = "Marisa.Freitas@iol.pt", Contacto = "967197885", NIF = "346871334" },
-               new Utilizadores { IdUser = 2, Nome = "Fátima Ribeiro", DataNasc = new DateTime(2019, 4, 16), Email = "Fátima.Machado@gmail.com", Contacto = "963737476", NIF = "346871334" },
-               new Utilizadores { IdUser = 4, Nome = "Paula Silva", DataNasc = new DateTime(2019, 4, 16), Email = "Paula.Lopes@iol.pt", Contacto = "967517256", NIF = "346871334" },
-               new Utilizadores { IdUser = 5, Nome = "Mariline Marques", DataNasc = new DateTime(2019, 4, 16), Email = "Mariline.Martins@sapo.pt", Contacto = "967212144", NIF = "346871334" },
-               new Utilizadores { IdUser = 6, Nome = "Marcos Rocha", DataNasc = new DateTime(2019, 4, 16), Email = "Marcos.Rocha@sapo.pt", Contacto = "962125638", NIF = "346871334" },
-               new Utilizadores { IdUser = 7, Nome = "Alexandre Vieira", DataNasc = new DateTime(2019, 4, 16), Email = "Alexandre.Dias@hotmail.com", Contacto = "961493756", NIF = "346871334" },
-               new Utilizadores { IdUser = 8, Nome = "Paula Soares", DataNasc = new DateTime(2019, 4, 16), Email = "Paula.Vieira@clix.pt", Contacto = "961937768", NIF = "346871334" },
-               new Utilizadores { IdUser = 9, Nome = "Mariline Santos", DataNasc = new DateTime(2019, 4, 16), Email = "Mariline.Ribeiro@iol.pt", Contacto = "964106478", NIF = "346871334" },
-               new Utilizadores { IdUser = 10, Nome = "Roberto Pinto", DataNasc = new DateTime(2019, 4, 16), Email = "Roberto.Vieira@sapo.pt", Contacto = "964685937", NIF = "346871334" }
+               new Utilizadores { Id = 1, Nome = "Marisa Vieira", DataNasc = new DateTime(2019, 4, 16), Email = "Marisa.Freitas@ipt.pt", Contacto = "967197885", NIF = "346871334" },
+               new Utilizadores { Id = 2, Nome = "Fátima Ribeiro", DataNasc = new DateTime(2019, 4, 16), Email = "Fátima.Machado@ipt.pt", Contacto = "963737476", NIF = "346871334" },
+               new Utilizadores { Id = 4, Nome = "Paula Silva", DataNasc = new DateTime(2019, 4, 16), Email = "Paula.Lopes@ipt.pt", Contacto = "967517256", NIF = "346871334" },
+               new Utilizadores { Id = 5, Nome = "Mariline Marques", DataNasc = new DateTime(2019, 4, 16), Email = "Mariline.Martins@ipt.pt", Contacto = "967212144", NIF = "346871334" },
+               new Utilizadores { Id = 6, Nome = "Marcos Rocha", DataNasc = new DateTime(2019, 4, 16), Email = "Marcos.Rocha@ipt.pt", Contacto = "962125638", NIF = "346871334" },
+               new Utilizadores { Id = 7, Nome = "Alexandre Vieira", DataNasc = new DateTime(2019, 4, 16), Email = "Alexandre.Dias@ipt.pt", Contacto = "961493756", NIF = "346871334" },
+               new Utilizadores { Id = 8, Nome = "Paula Soares", DataNasc = new DateTime(2019, 4, 16), Email = "Paula.Vieira@ipt.pt", Contacto = "961937768", NIF = "346871334" },
+               new Utilizadores { Id = 9, Nome = "Mariline Santos", DataNasc = new DateTime(2019, 4, 16), Email = "Mariline.Ribeiro@ipt.pt", Contacto = "964106478", NIF = "346871334" },
+               new Utilizadores { Id = 10, Nome = "Roberto Pinto", DataNasc = new DateTime(2019, 4, 16), Email = "Roberto.Vieira@ipt.pt", Contacto = "964685937", NIF = "346871334" }
             );
 
             modelBuilder.Entity<Reservas>().HasData(
@@ -74,9 +87,9 @@ namespace Hotel_IPT_App.Data
                new Fotos { IdFoto = 15, Fotografia = "border_collie.jpg", Data = new DateTime(2021, 2, 4), QuartoFK = 2 }
             );
         }
-        public DbSet<Hotel_IPT.Models.Utilizadores> Utilizadores { get; set; }
-        public DbSet<Hotel_IPT.Models.Quartos> Quartos { get; set; }
-        public DbSet<Hotel_IPT.Models.Reservas> Reservas { get; set; }
-        public DbSet<Hotel_IPT.Models.Fotos> Fotos { get; set; }
+        public DbSet<Utilizadores> Utilizadores { get; set; }
+        public DbSet<Quartos> Quartos { get; set; }
+        public DbSet<Reservas> Reservas { get; set; }
+        public DbSet<Fotos> Fotos { get; set; }
     }
 }
