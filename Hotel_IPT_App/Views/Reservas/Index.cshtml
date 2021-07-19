@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Hotel_IPT.Models.Reservas>
+﻿@model IEnumerable<Hotel_IPT_App.Models.Reservas>
 
 @{
     ViewData["Title"] = "Reservas";
@@ -20,9 +20,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.NPessoas)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Estado)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Cliente)
             </th>
@@ -42,16 +42,16 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.NPessoas)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Estado)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Cliente.Id)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.IdReserva">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.IdReserva">Details</a> 
-                    @* | <a asp-action="Delete" asp-route-id="@item.IdReserva">Delete</a>*@
+                     | <a asp-action="Delete" asp-route-id="@item.IdReserva">Delete</a>
                 </td>
             </tr>
         }

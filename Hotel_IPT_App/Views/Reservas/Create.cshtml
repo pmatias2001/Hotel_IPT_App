@@ -1,4 +1,4 @@
-﻿@model Hotel_IPT.Models.Reservas
+﻿@model Hotel_IPT_App.Models.Reservas
 
 @{
     ViewData["Title"] = "Create";
@@ -27,15 +27,17 @@
                 <input asp-for="NPessoas" class="form-control" />
                 <span asp-validation-for="NPessoas" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
-                </label>
-            </div>
             <div class="form-group">
                 <label asp-for="UserFK" class="control-label">@Html.DisplayNameFor(model => model.Cliente)</label>
                 <input asp-for="UserFK" class="form-control" />
                 <span asp-validation-for="UserFK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Quartos</label>
+                @foreach (Quartos item in ViewBag.ListaDeQuartos)
+                {
+                    <br /> <input type="checkbox" value="@item.IdQuarto" name="QuartoEscolhido" /> @item.Descricao
+                }
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

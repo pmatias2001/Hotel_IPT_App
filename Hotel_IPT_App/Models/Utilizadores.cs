@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Hotel_IPT.Models
+namespace Hotel_IPT_App.Models
 {
     public class Utilizadores
     {
@@ -43,8 +43,9 @@ namespace Hotel_IPT.Models
         //[Required(ErrorMessage = "O {0} é de preenchimento obrigatório")]
         [StringLength(50, ErrorMessage = "O {0} não pode ter mais de {1} caracteres.")]
         [EmailAddress(ErrorMessage = "o {0} introduzido não é válido")]
-        [RegularExpression("((((aluno)|(es((tt)|(ta)|(gt))))[0-9]{4,5})|([a-z]+(.[a-z]+)*))@ipt.pt",
+        [RegularExpression("([a-zA-Z0-9.]+)@ipt.pt",
                            ErrorMessage = "Só são aceites emails do IPT.")]
+        //((((aluno)|(es((tt)|(ta)|(gt))))[0-9]{4,5})|([a - z]+(.[a-z]+)*))
         public string Email { get; set; }
 
         /// <summary>       

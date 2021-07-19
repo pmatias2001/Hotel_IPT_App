@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Hotel_IPT.Models;
+using Hotel_IPT_App.Models;
 using Hotel_IPT_App.Data;
 using Microsoft.AspNetCore.Authorization;
 
@@ -37,7 +37,7 @@ namespace Hotel_IPT_App.Controllers
                 return NotFound();
             }
 
-            var quartos = await _context.Quartos
+            var quartos = await _context.Quartos.Include(m => m.ListaFotos)
                 .FirstOrDefaultAsync(m => m.IdQuarto == id);
             if (quartos == null)
             {
@@ -128,7 +128,7 @@ namespace Hotel_IPT_App.Controllers
                 return NotFound();
             }
 
-            var quartos = await _context.Quartos
+            var quartos = await _context.Quartos.Include(m => m.ListaFotos)
                 .FirstOrDefaultAsync(m => m.IdQuarto == id);
             if (quartos == null)
             {

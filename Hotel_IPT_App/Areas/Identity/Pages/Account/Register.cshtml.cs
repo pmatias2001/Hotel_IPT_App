@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
+﻿using Hotel_IPT_App.Data;
+using Hotel_IPT_App.Models;
 using Microsoft.AspNetCore.Authorization;
-using Hotel_IPT_App.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using Hotel_IPT.Models;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace Hotel_IPT_App.Areas.Identity.Pages.Account
 {
@@ -50,7 +44,7 @@ namespace Hotel_IPT_App.Areas.Identity.Pages.Account
 
         public string ReturnUrl { get; set; }
 
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
+        //public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         public class InputModel
         {
@@ -73,23 +67,23 @@ namespace Hotel_IPT_App.Areas.Identity.Pages.Account
             public Utilizadores Utilizador { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public void OnGet(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser
                 {
                     UserName = Input.Email,
                     Email = Input.Email,
-                    EmailConfirmed = false, // o email não está formalmente confirmado
+                    EmailConfirmed = true, // o email está formalmente confirmado
                     LockoutEnabled = true,  // o utilizador pode ser bloqueado
                     LockoutEnd = new DateTime(DateTime.Now.Year + 10, 1, 1),  // data em que termina o bloqueio,
                                                                               // se não for anulado antes
@@ -101,7 +95,7 @@ namespace Hotel_IPT_App.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
                     // se se desejar associar o utilizador recem criado à role 'Criador' 
-                    await _userManager.AddToRoleAsync(user, "Utilizador");
+                    await _userManager.AddToRoleAsync(user, "Criador");
 
                     //*************************************************************
                     // Vamos proceder à operação de guardar os dados do Criador
@@ -115,16 +109,26 @@ namespace Hotel_IPT_App.Areas.Identity.Pages.Account
                                                           // para formar uma 'ponte' (foreign key) entre
                                                           // os dados da autenticação e os dados do 'negócio'
 
+                    Utilizadores novoUtilizador = new()
+                    {
+                        Contacto = Input.Utilizador.Contacto,
+                        DataNasc = Input.Utilizador.DataNasc,
+                        Email = Input.Email,
+                        NIF = Input.Utilizador.NIF,
+                        Nome = Input.Utilizador.Nome,
+                        UserName = user.Id
+                    };
+
 
                     // estamos em condições de guardar os dados na BD
                     try
                     {
-                        _context.Add(Input.Utilizador); // adicionar o Criador
-                        await _context.SaveChangesAsync(); // 'commit' da adição
+                        await _context.AddAsync(novoUtilizador); // adicionar o Utilizador
+                        await  _context.SaveChangesAsync(); // 'commit' da adição
                                                            // Enviar para o utilizador para a página de confirmação da criaçao de Registo
                         return RedirectToPage("RegisterConfirmation");
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         // houve um erro na criação dos dados do Criador
                         // Mas, o USER já foi criado na BD
@@ -157,15 +161,15 @@ namespace Hotel_IPT_App.Areas.Identity.Pages.Account
                     //        await _signInManager.SignInAsync(user, isPersistent: false);
                     //        return LocalRedirect(returnUrl);
                     //    }
-                    }
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
                 }
-
-                // If we got this far, something failed, redisplay form
-                return Page();
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
             }
+
+            // If we got this far, something failed, redisplay form
+            return Page();
         }
     }
+}

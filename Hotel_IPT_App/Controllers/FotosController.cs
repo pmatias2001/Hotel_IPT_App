@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Hotel_IPT.Models;
+using Hotel_IPT_App.Models;
 using Hotel_IPT_App.Data;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Hotel_IPT_App.Controllers
 {
-    [Authorize]
+   // [Authorize]
     public class FotosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -50,6 +50,7 @@ namespace Hotel_IPT_App.Controllers
         }
 
         // GET: Fotos/Create
+        [AllowAnonymous]
         public IActionResult Create()
         {
             ViewData["QuartoFK"] = new SelectList(_context.Quartos, "IdQuarto", "IdQuarto");
@@ -61,6 +62,7 @@ namespace Hotel_IPT_App.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Create([Bind("IdFoto,Legenda,Data,QuartoFK")] Fotos fotos)
         {
             if (ModelState.IsValid)

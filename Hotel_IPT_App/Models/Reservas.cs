@@ -1,13 +1,14 @@
-﻿using System;
+﻿using CustomDataAnnotations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Hotel_IPT.Models
+namespace Hotel_IPT_App.Models
 {
-    public class Reservas
+    public class Reservas : IValidatableObject
     {
         public Reservas()
         {
@@ -24,6 +25,7 @@ namespace Hotel_IPT.Models
         /// Data inicial da reserva
         /// </summary>
         [Display(Name = "Data inicial")]
+        [CurrentDate(ErrorMessage = "{0} tem de ser maior que a data atual")]
         public DateTime DataInicial { get; set; }
 
         /// <summary>
@@ -39,12 +41,8 @@ namespace Hotel_IPT.Models
         public int NPessoas { get; set; }
 
         /// <summary>
-        /// Estado da reserva; true se está ativa (foi paga e estamos entre a data inicial e final) 
-        /// false se não está ativa (já passou o prazo, não foi paga ou foi cancelada)
+        ///criação da FK que referencia o User a que a Reserva pertence
         /// </summary>
-        public Boolean Estado { get; set; }
-
-        // criação da FK que referencia o User a que a Reserva pertence
         [ForeignKey(nameof(Cliente))]
         [Display(Name = "Utilizador")]
         public int UserFK { get; set; }
@@ -56,5 +54,14 @@ namespace Hotel_IPT.Models
         /// Lista das Reservas do Quarto
         /// </summary>
         public ICollection<Quartos> ListaQuartos { get; set; }
+
+        //verifica se a data final é maior que a data inicial, se não for não aceita a validação
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            if (DataFim < DataInicial)
+            {
+                yield return new ValidationResult("Data final tem de ser maior que a data inicial");
+            }
+        }
     }
 }

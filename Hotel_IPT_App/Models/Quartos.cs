@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Hotel_IPT.Models
+namespace Hotel_IPT_App.Models
 {
     public class Quartos
     {

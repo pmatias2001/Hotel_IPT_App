@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Hotel_IPT.Models.Quartos>
+﻿@model IEnumerable<Hotel_IPT_App.Models.Quartos>
 
 @{
     ViewData["Title"] = "Quartos";
@@ -6,9 +6,9 @@
 
 <h1>Quartos</h1>
 
-@*<p>
+<p>
     <a asp-action="Create">Create New</a>
-</p>*@
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -43,9 +43,9 @@
                 @Html.DisplayFor(modelItem => item.Preco)
             </td>
             <td>
-                @*<a asp-action="Edit" asp-route-id="@item.IdQuarto">Edit</a> |*@
+                <a asp-action="Edit" asp-route-id="@item.IdQuarto">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.IdQuarto">Detalhes</a>
-                @*| <a asp-action="Delete" asp-route-id="@item.IdQuarto">Delete</a>*@
+                | <a asp-action="Delete" asp-route-id="@item.IdQuarto">Delete</a>
             </td>
         </tr>
 }

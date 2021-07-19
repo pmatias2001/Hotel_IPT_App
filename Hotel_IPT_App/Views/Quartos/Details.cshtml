@@ -1,4 +1,4 @@
-﻿@model Hotel_IPT.Models.Quartos
+﻿@model Hotel_IPT_App.Models.Quartos
 
 @{
     ViewData["Title"] = "Details";
@@ -10,33 +10,42 @@
     <h4>Quartos</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Piso)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Piso)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Descricao)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Descricao)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Lotacao)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Lotacao)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Preco)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Preco)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ListaFotos)
+        </dt>
+        @foreach (var item in Model.ListaFotos)
+        {
+            <dd>
+                <img class="fotoQuarto" src="~/fotos/@item.Fotografia"/>
+            </dd>
+        }
     </dl>
 </div>
 <div>
-    @*<a asp-action="Edit" asp-route-id="@Model.IdQuarto">Edit</a> |*@
+    <a asp-action="Edit" asp-route-id="@Model.IdQuarto">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

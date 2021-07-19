@@ -27,12 +27,24 @@ namespace Hotel_IPT_App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // uso de vars. de sessão
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromSeconds(100);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            // definir qual a classe que representa a Base de Dados
+            // e especifica qual o motor (engine) que manipula a base de dados
+            // Especifica, também, onde está a definição da localização da Base de Dados
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
         }
@@ -55,6 +67,9 @@ namespace Hotel_IPT_App
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            // permitir o uso de vars. de sessão
+            app.UseSession();
 
             app.UseAuthentication();
             app.UseAuthorization();

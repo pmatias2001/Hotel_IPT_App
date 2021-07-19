@@ -6,8 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\InitialDate.cs" />
     <Compile Remove="Data\Migrations\20210613220400_db.cs" />
     <Compile Remove="Data\Migrations\20210613220400_db.Designer.cs" />
+    <Compile Remove="Data\SeMaiorQueDataAtual.cs" />
+    <Compile Remove="Data\SeMaiorQueDataInicial.cs" />
   </ItemGroup>
 
   <ItemGroup>

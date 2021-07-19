@@ -4,14 +4,16 @@ using Hotel_IPT_App.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Hotel_IPT_App.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210707010340_IdentityRole")]
+    partial class IdentityRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -196,66 +198,66 @@ namespace Hotel_IPT_App.Data.Migrations
                         new
                         {
                             IdQuarto = 1,
-                            Descricao = "Quarto 101",
+                            Descricao = "Retriever do Labrador",
                             Lotacao = 3,
-                            Piso = 1,
-                            Preco = 200.0
+                            Piso = 3,
+                            Preco = 20.300000000000001
                         },
                         new
                         {
                             IdQuarto = 2,
-                            Descricao = "Quarto 102",
+                            Descricao = "Serra da Estrela",
                             Lotacao = 3,
-                            Piso = 1,
-                            Preco = 400.0
+                            Piso = 3,
+                            Preco = 20.300000000000001
                         },
                         new
                         {
                             IdQuarto = 3,
-                            Descricao = "Quarto 201",
+                            Descricao = "Pastor Alemão",
                             Lotacao = 3,
-                            Piso = 2,
-                            Preco = 350.0
+                            Piso = 3,
+                            Preco = 20.300000000000001
                         },
                         new
                         {
                             IdQuarto = 4,
-                            Descricao = "Quarto 202",
+                            Descricao = "Dogue Alemão",
                             Lotacao = 3,
-                            Piso = 2,
-                            Preco = 250.0
+                            Piso = 3,
+                            Preco = 20.300000000000001
                         },
                         new
                         {
                             IdQuarto = 5,
-                            Descricao = "Quarto 301",
+                            Descricao = "S. Bernardo",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 500.0
+                            Preco = 20.300000000000001
                         },
                         new
                         {
                             IdQuarto = 6,
-                            Descricao = "Quarto 302",
+                            Descricao = "Rafeiro do Alentejo",
                             Lotacao = 3,
                             Piso = 3,
-                            Preco = 400.0
+                            Preco = 20.300000000000001
                         },
                         new
                         {
                             IdQuarto = 7,
-                            Descricao = "Quarto 401",
+                            Descricao = "Golden Retriever",
                             Lotacao = 3,
-                            Piso = 4,
-                            Preco = 200.0
+                            Piso = 3,
+                            Preco = 20.300000000000001
                         },
                         new
                         {
                             IdQuarto = 8,
-                            Descricao = "Quarto 402",
+                            Descricao = "Border Collie",
                             Lotacao = 3,
-                            Piso = 4,
-                            Preco = 350.0
+                            Piso = 3,
+                            Preco = 20.300000000000001
                         });
                 });
 
@@ -290,7 +292,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             IdReserva = 1,
                             DataFim = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicial = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            NPessoas = 2,
+                            NPessoas = 3,
                             UserFK = 1
                         },
                         new
@@ -298,7 +300,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             IdReserva = 2,
                             DataFim = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicial = new DateTime(2019, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            NPessoas = 4,
+                            NPessoas = 3,
                             UserFK = 1
                         },
                         new
@@ -306,7 +308,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             IdReserva = 3,
                             DataFim = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicial = new DateTime(2011, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            NPessoas = 4,
+                            NPessoas = 3,
                             UserFK = 5
                         },
                         new
@@ -314,7 +316,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             IdReserva = 4,
                             DataFim = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicial = new DateTime(2008, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            NPessoas = 6,
+                            NPessoas = 3,
                             UserFK = 5
                         },
                         new
@@ -322,7 +324,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             IdReserva = 5,
                             DataFim = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicial = new DateTime(2012, 8, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            NPessoas = 4,
+                            NPessoas = 3,
                             UserFK = 2
                         },
                         new
@@ -330,7 +332,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             IdReserva = 6,
                             DataFim = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicial = new DateTime(2010, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            NPessoas = 4,
+                            NPessoas = 3,
                             UserFK = 6
                         },
                         new
@@ -338,7 +340,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             IdReserva = 7,
                             DataFim = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicial = new DateTime(2010, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            NPessoas = 2,
+                            NPessoas = 3,
                             UserFK = 6
                         },
                         new
@@ -346,7 +348,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             IdReserva = 8,
                             DataFim = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicial = new DateTime(2013, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            NPessoas = 6,
+                            NPessoas = 3,
                             UserFK = 7
                         },
                         new
@@ -354,7 +356,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             IdReserva = 9,
                             DataFim = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicial = new DateTime(2011, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            NPessoas = 4,
+                            NPessoas = 3,
                             UserFK = 7
                         },
                         new
@@ -362,7 +364,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             IdReserva = 10,
                             DataFim = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicial = new DateTime(2017, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            NPessoas = 2,
+                            NPessoas = 3,
                             UserFK = 4
                         },
                         new
@@ -370,7 +372,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             IdReserva = 11,
                             DataFim = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicial = new DateTime(2018, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            NPessoas = 4,
+                            NPessoas = 3,
                             UserFK = 8
                         });
                 });
@@ -425,7 +427,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Contacto = "963737476",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Fátima.Machado@ipt.pt",
-                            NIF = "348716334",
+                            NIF = "346871334",
                             Nome = "Fátima Ribeiro"
                         },
                         new
@@ -434,7 +436,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Contacto = "967517256",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Paula.Lopes@ipt.pt",
-                            NIF = "346487134",
+                            NIF = "346871334",
                             Nome = "Paula Silva"
                         },
                         new
@@ -443,7 +445,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Contacto = "967212144",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Mariline.Martins@ipt.pt",
-                            NIF = "346873324",
+                            NIF = "346871334",
                             Nome = "Mariline Marques"
                         },
                         new
@@ -452,7 +454,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Contacto = "962125638",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Marcos.Rocha@ipt.pt",
-                            NIF = "468711334",
+                            NIF = "346871334",
                             Nome = "Marcos Rocha"
                         },
                         new
@@ -461,7 +463,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Contacto = "961493756",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Alexandre.Dias@ipt.pt",
-                            NIF = "368714334",
+                            NIF = "346871334",
                             Nome = "Alexandre Vieira"
                         },
                         new
@@ -470,7 +472,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Contacto = "961937768",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Paula.Vieira@ipt.pt",
-                            NIF = "346681334",
+                            NIF = "346871334",
                             Nome = "Paula Soares"
                         },
                         new
@@ -479,7 +481,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Contacto = "964106478",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Mariline.Ribeiro@ipt.pt",
-                            NIF = "346713334",
+                            NIF = "346871334",
                             Nome = "Mariline Santos"
                         },
                         new
@@ -488,7 +490,7 @@ namespace Hotel_IPT_App.Data.Migrations
                             Contacto = "964685937",
                             DataNasc = new DateTime(2019, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Roberto.Vieira@ipt.pt",
-                            NIF = "934671334",
+                            NIF = "346871334",
                             Nome = "Roberto Pinto"
                         });
                 });
@@ -523,7 +525,7 @@ namespace Hotel_IPT_App.Data.Migrations
                         new
                         {
                             Id = "c",
-                            ConcurrencyStamp = "84b84616-0183-4786-b11e-42e330e18f99",
+                            ConcurrencyStamp = "cc9789e8-7ba0-48a8-8223-0df8ca8d7b40",
                             Name = "Criador",
                             NormalizedName = "CRIADOR"
                         });
